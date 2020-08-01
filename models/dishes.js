@@ -1,25 +1,21 @@
-// for creating mongoose std schema
-
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 require('mongoose-currency').loadType(mongoose);
-const Currency = mongoose.Types.Currency;
-
-
-const Schema = mongoose.Schema;
+var Currency = mongoose.Types.Currency;
 
 var commentSchema = new Schema({
-    rating: {
+    rating:  {
         type: Number,
         min: 1,
         max: 5,
         required: true
     },
-    comment: {
+    comment:  {
         type: String,
         required: true
     },
-    author: {
+    author:  {
         type: String,
         required: true
     }
@@ -27,15 +23,11 @@ var commentSchema = new Schema({
     timestamps: true
 });
 
-const dishSchema = new Schema({
+var dishSchema = new Schema({
     name: {
         type: String,
         required: true,
         unique: true
-    },
-    description: {
-        type: String,
-        required: true
     },
     image: {
         type: String,
@@ -47,21 +39,21 @@ const dishSchema = new Schema({
     },
     label: {
         type: String,
-        default: ''
+        required: true,
+        default: ""
     },
     price: {
         type: Currency,
-        required: true,
-        min: 0
+        required: true
     },
-    featured: {
-        type: Boolean,
-        default: false
-    },
-    comments: [commentSchema]
+    description: {
+        type: String,
+    },   
+    comments:[commentSchema]
 }, {
     timestamps: true
 });
+
 var Dishes = mongoose.model('Dish', dishSchema);
 
 module.exports = Dishes;
