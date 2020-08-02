@@ -1,5 +1,5 @@
 # express-gener-conFusionServer
-
+start mongodb server 
 ### npm init
 ### npm install express-generator --save
 ### npm install mongoose bluebird mongoose-currency --save
